@@ -1,0 +1,194 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "naviadf52"
+		},
+		"ls_selfhostedSqlServer_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_selfhostedSqlServer'"
+		},
+		"ls_sqlserver_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sqlserver'"
+		},
+		"ls_storagedatalake_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_storagedatalake'"
+		},
+		"ls_synapsestorage_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_synapsestorage'"
+		},
+		"ls_selfhostedSqlServer_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "KANKIPATI"
+		},
+		"ls_selfhostedSqlServer_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorks2017"
+		},
+		"ls_selfhostedSqlServer_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "onpremiseuser"
+		},
+		"ls_sqlserver_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "naviserver.database.windows.net"
+		},
+		"ls_sqlserver_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().dbname}"
+		},
+		"ls_sqlserver_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "naveena"
+		},
+		"ls_storagedatalake_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://navistorage52.dfs.core.windows.net/"
+		},
+		"ls_synapsestorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://navisynapse.dfs.core.windows.net/"
+		},
+		"trigger1_properties_copysqlserverparameterized_parameters_sourcetablefrompipeline": {
+			"type": "string",
+			"defaultValue": "Address"
+		},
+		"trigger1_properties_copysqlserverparameterized_parameters_dbnamefrompipeline": {
+			"type": "string",
+			"defaultValue": "mydb1"
+		},
+		"trigger1_properties_copysqlserverparameterized_parameters_schemanamefrompipeline": {
+			"type": "string",
+			"defaultValue": "SalesLT"
+		},
+		"trigger1_properties_copysqlserverparameterized_parameters_destinationtablefrompipeline": {
+			"type": "string",
+			"defaultValue": "Addresscopy"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "naviadf52_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_sqlserver_password": {
+						"value": "[parameters('ls_sqlserver_password')]"
+					},
+					"ls_storagedatalake_accountKey": {
+						"value": "[parameters('ls_storagedatalake_accountKey')]"
+					},
+					"ls_synapsestorage_accountKey": {
+						"value": "[parameters('ls_synapsestorage_accountKey')]"
+					},
+					"ls_selfhostedSqlServer_password": {
+						"value": "[parameters('ls_selfhostedSqlServer_password')]"
+					},
+					"ls_sqlserver_properties_typeProperties_server": {
+						"value": "[parameters('ls_sqlserver_properties_typeProperties_server')]"
+					},
+					"ls_sqlserver_properties_typeProperties_database": {
+						"value": "[parameters('ls_sqlserver_properties_typeProperties_database')]"
+					},
+					"ls_sqlserver_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sqlserver_properties_typeProperties_userName')]"
+					},
+					"ls_storagedatalake_properties_typeProperties_url": {
+						"value": "[parameters('ls_storagedatalake_properties_typeProperties_url')]"
+					},
+					"ls_synapsestorage_properties_typeProperties_url": {
+						"value": "[parameters('ls_synapsestorage_properties_typeProperties_url')]"
+					},
+					"ls_selfhostedSqlServer_properties_typeProperties_server": {
+						"value": "[parameters('ls_selfhostedSqlServer_properties_typeProperties_server')]"
+					},
+					"ls_selfhostedSqlServer_properties_typeProperties_database": {
+						"value": "[parameters('ls_selfhostedSqlServer_properties_typeProperties_database')]"
+					},
+					"ls_selfhostedSqlServer_properties_typeProperties_userName": {
+						"value": "[parameters('ls_selfhostedSqlServer_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "naviadf52_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'naviadf52_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "naviadf52_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"trigger1_properties_copysqlserverparameterized_parameters_sourcetablefrompipeline": {
+						"value": "[parameters('trigger1_properties_copysqlserverparameterized_parameters_sourcetablefrompipeline')]"
+					},
+					"trigger1_properties_copysqlserverparameterized_parameters_dbnamefrompipeline": {
+						"value": "[parameters('trigger1_properties_copysqlserverparameterized_parameters_dbnamefrompipeline')]"
+					},
+					"trigger1_properties_copysqlserverparameterized_parameters_schemanamefrompipeline": {
+						"value": "[parameters('trigger1_properties_copysqlserverparameterized_parameters_schemanamefrompipeline')]"
+					},
+					"trigger1_properties_copysqlserverparameterized_parameters_destinationtablefrompipeline": {
+						"value": "[parameters('trigger1_properties_copysqlserverparameterized_parameters_destinationtablefrompipeline')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'naviadf52_ArmTemplate_1')]"
+			]
+		}
+	]
+}

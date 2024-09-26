@@ -1,0 +1,57 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "naviadf52"
+		},
+		"ls_selfhostedSqlServer_password": {
+			"value": ""
+		},
+		"ls_sqlserver_password": {
+			"value": ""
+		},
+		"ls_storagedatalake_accountKey": {
+			"value": ""
+		},
+		"ls_synapsestorage_accountKey": {
+			"value": ""
+		},
+		"ls_selfhostedSqlServer_properties_typeProperties_server": {
+			"value": "KANKIPATI"
+		},
+		"ls_selfhostedSqlServer_properties_typeProperties_database": {
+			"value": "AdventureWorks2017"
+		},
+		"ls_selfhostedSqlServer_properties_typeProperties_userName": {
+			"value": "onpremiseuser"
+		},
+		"ls_sqlserver_properties_typeProperties_server": {
+			"value": "naviserver.database.windows.net"
+		},
+		"ls_sqlserver_properties_typeProperties_database": {
+			"value": "@{linkedService().dbname}"
+		},
+		"ls_sqlserver_properties_typeProperties_userName": {
+			"value": "naveena"
+		},
+		"ls_storagedatalake_properties_typeProperties_url": {
+			"value": "https://navistorage52.dfs.core.windows.net/"
+		},
+		"ls_synapsestorage_properties_typeProperties_url": {
+			"value": "https://navisynapse.dfs.core.windows.net/"
+		},
+		"trigger1_properties_copysqlserverparameterized_parameters_sourcetablefrompipeline": {
+			"value": "Address"
+		},
+		"trigger1_properties_copysqlserverparameterized_parameters_dbnamefrompipeline": {
+			"value": "mydb1"
+		},
+		"trigger1_properties_copysqlserverparameterized_parameters_schemanamefrompipeline": {
+			"value": "SalesLT"
+		},
+		"trigger1_properties_copysqlserverparameterized_parameters_destinationtablefrompipeline": {
+			"value": "Addresscopy"
+		}
+	}
+}
