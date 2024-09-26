@@ -1,0 +1,22 @@
+{
+	"name": "ls_sqlserver",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"dbname": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "naviserver.database.windows.net",
+			"database": "@{linkedService().dbname}",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "naveena",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDhBNEQyNjJCLUY1OTktNEZGRi05RTU2LTk5RDcyREE2MUQ4M18wOGEwY2Q5OC01ZjZjLTQzZjItOTBjYi1jZDVjMTRmOWJjMjQiDQp9"
+		}
+	}
+}

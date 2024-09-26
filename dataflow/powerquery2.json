@@ -1,0 +1,28 @@
+{
+	"name": "powerquery2",
+	"properties": {
+		"type": "WranglingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "ds_emp",
+					"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> ds_emp",
+					"dataset": {
+						"referenceName": "ds_emp",
+						"type": "DatasetReference"
+					}
+				},
+				{
+					"name": "ds_department",
+					"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> ds_department",
+					"dataset": {
+						"referenceName": "ds_department",
+						"type": "DatasetReference"
+					}
+				}
+			],
+			"script": "section Section1;\r\nshared ds_emp = let AdfDoc = AzureStorage.DataLakeContents(\"https://navisynapse.dfs.core.windows.net/practice/input/employee.csv\"),Csv = Csv.Document(AdfDoc, [Delimiter = \",\", Encoding = TextEncoding.Utf8, QuoteStyle = QuoteStyle.Csv]), PromotedHeaders = Table.PromoteHeaders(Csv, [PromoteAllScalars = true]) in  PromotedHeaders;\r\nshared ds_department = let AdfDoc = AzureStorage.DataLakeContents(\"https://navisynapse.dfs.core.windows.net/practice/input/department.csv\"),Csv = Csv.Document(AdfDoc, [Delimiter = \",\", Encoding = TextEncoding.Utf8, QuoteStyle = QuoteStyle.Csv]), PromotedHeaders = Table.PromoteHeaders(Csv, [PromoteAllScalars = true]) in  PromotedHeaders;\r\nshared UserQuery = let Source = #\"ds_emp\",\r\n  #\"Grouped rows\" = Table.Group(Source, {\"depid\"}, {{\"TotalEmployees\", each Table.RowCount(_), Int64.Type}}) in #\"Grouped rows\";\r\n",
+			"documentLocale": "en-us"
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"name": "ls_selfhostedSqlServer",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "KANKIPATI",
+			"database": "AdventureWorks2017",
+			"encrypt": "optional",
+			"trustServerCertificate": true,
+			"authenticationType": "SQL",
+			"userName": "onpremiseuser",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJkYTE4MmFlYi05ZTJkLTQyZjctOWQ4Ny04ZWU4NTNjODNhMTEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "selfhostedprivate",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

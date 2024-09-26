@@ -1,0 +1,51 @@
+{
+	"name": "ds_empjson",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_synapsestorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "emp.json",
+				"folderPath": "InputDAtaflow",
+				"fileSystem": "practice"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer"
+				},
+				"name": {
+					"type": "string"
+				},
+				"skills": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"address": {
+					"type": "object",
+					"properties": {
+						"state": {
+							"type": "string"
+						},
+						"country": {
+							"type": "string"
+						},
+						"zipcode": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,41 @@
+{
+	"name": "outputlocation",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_synapsestorage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folderfords": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@dataset().folderfords",
+					"type": "Expression"
+				},
+				"fileSystem": "practice"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "1",
+				"type": "String"
+			},
+			{
+				"name": "navi",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,9 @@
+{
+	"name": "naviadf52",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "6b7fea82-72a7-4051-9802-3b96350b7b70",
+		"tenantId": "13cdee45-04fd-4888-9edf-4983115b23b1"
+	}
+}

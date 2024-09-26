@@ -1,0 +1,30 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "copysqlserverparameterized",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"sourcetablefrompipeline": "Address",
+					"dbnamefrompipeline": "mydb1",
+					"schemanamefrompipeline": "SalesLT",
+					"destinationtablefrompipeline": "Addresscopy"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2024-09-18T16:05:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
